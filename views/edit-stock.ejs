@@ -1,0 +1,27 @@
+<%- include('partials/header') %>
+
+<div class="container">
+  <div class="form-card" style="max-width:550px;margin:30px auto;">
+    <h2>✏️ Stock Update</h2>
+    <p style="color:gray;font-size:13px;margin-bottom:20px;">Stock: <strong><%= stock.stockName %></strong></p>
+
+    <% if (error) { %>
+      <div class="alert alert-error">⚠️ <%= error %></div>
+    <% } %>
+
+    <form action="/portfolio/edit/<%= stock._id %>" method="POST">
+      <div class="form-group">
+        <label>Quantity</label>
+        <input type="number" name="quantity" value="<%= stock.quantity %>" min="1" required>
+      </div>
+      <div class="form-group">
+        <label>Current Price (₹)</label>
+        <input type="number" name="currentPrice" value="<%= stock.currentPrice %>" step="0.01" min="0" required>
+      </div>
+      <button type="submit" class="btn btn-warning" style="width:100%;padding:11px;">Update</button>
+    </form>
+    <p style="text-align:center;margin-top:15px;"><a href="/portfolio">← Back to Portfolio</a></p>
+  </div>
+</div>
+
+<%- include('partials/footer') %>

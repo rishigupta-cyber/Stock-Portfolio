@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <title>Verify OTP</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="auth-page">
+
+<div class="form-card">
+  <div class="logo">📈 StockPortfolio</div>
+  <p class="sub">OTP and enter new password</p>
+
+  <% if (error) { %>
+    <div class="alert alert-error">⚠️ <%= error %></div>
+  <% } %>
+
+  <form action="/verify-otp" method="POST">
+    <div class="form-group">
+      <label>OTP (Will be in your Email)</label>
+      <input type="text" name="otp" placeholder="6-digit OTP" maxlength="6" required>
+    </div>
+    <div class="form-group">
+      <label>New Password</label>
+      <input type="password" name="newPassword" placeholder="••••••••" minlength="6" required>
+    </div>
+    <button type="submit" class="btn btn-success" style="width:100%;padding:11px;">Password Reset Karo</button>
+  </form>
+</div>
+
+</body>
+</html>

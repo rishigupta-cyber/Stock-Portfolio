@@ -1,0 +1,70 @@
+<%- include('partials/header') %>
+
+<div class="container">
+  <div class="page-title">
+    <h1>👋 Welcome, <%= user.name %>!</h1>
+  </div>
+
+  <!-- Stats Cards -->
+  <div class="stats-grid">
+    <div class="stat-card">
+      <h3>💰 Total Investment</h3>
+      <div class="value neutral">₹<%= totalInvestment %></div>
+    </div>
+    <div class="stat-card">
+      <h3>📊 Current Value</h3>
+      <div class="value neutral">₹<%= currentValue %></div>
+    </div>
+    <div class="stat-card">
+      <h3>📈 Profit / Loss</h3>
+      <div class="value <%= profitLoss >= 0 ? 'profit' : 'loss' %>">
+        <%= profitLoss >= 0 ? '+' : '' %>₹<%= profitLoss %>
+      </div>
+    </div>
+    <div class="stat-card">
+      <h3>🗂️ Total Stocks</h3>
+      <div class="value neutral"><%= stocks.length %></div>
+    </div>
+  </div>
+
+  <!-- Recent Stocks -->
+  <div class="card">
+    <div class="page-title">
+      <h2>Recent Portfolio</h2>
+      <a href="/portfolio" class="btn btn-primary">View all</a>
+    </div>
+
+    <% if (stocks.length === 0) { %>
+      <p style="color:gray;text-align:center;padding:20px;">No stock is present. <a href="/portfolio/add">Add first stock!</a></p>
+    <% } else { %>
+      <table>
+        <thead>
+          <tr>
+            <th>Stock</th>
+            <th>Qty</th>
+            <th>Buy Price</th>
+            <th>Current Price</th>
+            <th>P/L</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% stocks.slice(0, 5).forEach(stock => {
+            const pl = ((stock.currentPrice - stock.buyPrice) * stock.quantity).toFixed(2);
+          %>
+          <tr>
+            <td><strong><%= stock.stockName %></strong></td>
+            <td><%= stock.quantity %></td>
+            <td>₹<%= stock.buyPrice %></td>
+            <td>₹<%= stock.currentPrice %></td>
+            <td class="<%= pl >= 0 ? 'profit' : 'loss' %>">
+              <%= pl >= 0 ? '+' : '' %>₹<%= pl %>
+            </td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    <% } %>
+  </div>
+</div>
+
+<%- include('partials/footer') %>
