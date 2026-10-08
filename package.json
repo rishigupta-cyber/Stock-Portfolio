@@ -13,6 +13,7 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.132.1",
     "bcryptjs": "^3.0.3",
     "dotenv": "^17.4.2",
     "ejs": "^5.0.2",
