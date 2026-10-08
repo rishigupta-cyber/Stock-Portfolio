@@ -1,31 +1,121 @@
-# Stock Portfolio
+# Stock Portfolio Platform
 
-Simple portfolio tracker built with Node, Express, EJS and MySQL.
+A web-based stock portfolio management platform built with **Node.js, Express.js, EJS, and MySQL**.
 
-## Setup
+The application allows users to create accounts, securely verify their identity through OTP-based email verification, manage their portfolio, and maintain portfolio-related data through a structured web application.
 
-1. Install dependencies
+## Features
 
-   npm install
+- User registration and login
+- OTP-based email verification
+- Session-based authentication
+- MySQL-backed session management
+- Stock portfolio management
+- Structured MVC-style backend architecture
+- Server-side rendering using EJS
+- REST-style routes using Express.js
+- Persistent data storage with MySQL
 
-2. Make sure MySQL is running locally (XAMPP, MySQL Workbench, `mysqld`, whatever you normally use). You don't need to create the database or tables yourself — the app creates `stockportfolio` and all its tables automatically the first time it starts.
+## Tech Stack
 
-3. Open .env and set DB_USER / DB_PASSWORD to match your local MySQL login (default XAMPP setup is usually user `root` with an empty password, which is what's in there now).
+| Layer | Technology |
+|---|---|
+| Backend | Node.js, Express.js |
+| Frontend | EJS, HTML, CSS, JavaScript |
+| Database | MySQL |
+| Authentication | Session-based authentication + OTP verification |
+| Email | Nodemailer |
+| Development | npm, Git, GitHub |
 
-4. Fill in the rest of .env (session secret, gmail address + app password for sending OTP emails).
+## Project Structure
 
-5. Start the server
+```text
+Stock-Portfolio/
+├── config/
+├── controllers/
+├── middleware/
+├── models/
+├── public/
+├── routes/
+├── views/
+├── app.js
+├── package.json
+└── README.md
+```
 
-   npm start
+## Getting Started
 
-   or for auto-reload while developing:
+### 1. Clone the repository
 
-   npm run dev
+```bash
+git clone https://github.com/rishigupta-cyber/Stock-Portfolio.git
+cd Stock-Portfolio
+```
 
-6. Visit http://localhost:3000
+### 2. Install dependencies
 
-## Notes
+```bash
+npm install
+```
 
-- OTP emails are sent through nodemailer using a Gmail app password, not your normal Gmail password. Generate one from your Google account security settings.
-- Signup requires a verified OTP before the account is actually created — nothing is written to the DB until the code matches.
-- Sessions are stored in MySQL too (a `sessions` table gets created automatically), so logins survive server restarts.
+### 3. Configure MySQL
+
+Make sure MySQL is running locally.
+
+The application automatically creates the required database and tables when it starts.
+
+### 4. Configure environment variables
+
+Create a `.env` file based on `.env.example` and configure the required database, session, and email settings.
+
+Do not commit your `.env` file or any credentials to GitHub.
+
+### 5. Start the application
+
+```bash
+npm start
+```
+
+For development with automatic restart:
+
+```bash
+npm run dev
+```
+
+### 6. Open the application
+
+Visit:
+
+```text
+http://localhost:3000
+```
+
+## Authentication
+
+New users are required to verify their email address using an OTP before their account is created.
+
+The application uses Nodemailer for sending verification emails and stores authenticated sessions in MySQL.
+
+## Security
+
+- Environment variables are used for sensitive configuration.
+- Email verification is required during registration.
+- Session data is stored server-side.
+- Database credentials should remain outside the source code.
+
+## Future Development
+
+Planned improvements may include:
+
+- Portfolio analytics and visualizations
+- Improved stock data integration
+- AI-assisted portfolio insights
+- Risk and diversification analysis
+- Production deployment
+- Improved responsive user interface
+
+## Author
+
+**Rishi Gupta**
+
+GitHub: https://github.com/rishigupta-cyber
